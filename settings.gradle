@@ -1,2 +1,4 @@
 rootProject.name = "HomeTaskNM"
 include ':app'
+include ':network'
+include ':core'
