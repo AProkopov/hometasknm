@@ -1,10 +1,10 @@
-package com.antonprokopov.hometasknm.ui
+package com.antonprokopov.appstartup.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.antonprokopov.appstartup.databinding.FragmentSplashBinding
 import com.antonprokopov.core.ui.BaseViewBindingFragment
-import com.antonprokopov.hometasknm.databinding.FragmentSplashBinding
 
 class SplashFragment : BaseViewBindingFragment<FragmentSplashBinding>() {
 
