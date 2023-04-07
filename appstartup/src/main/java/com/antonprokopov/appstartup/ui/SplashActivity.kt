@@ -1,9 +1,7 @@
 package com.antonprokopov.appstartup.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.antonprokopov.appstartup.R
 
 class SplashActivity : AppCompatActivity() {
