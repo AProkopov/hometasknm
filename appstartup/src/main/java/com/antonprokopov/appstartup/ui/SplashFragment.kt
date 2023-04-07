@@ -3,6 +3,7 @@ package com.antonprokopov.appstartup.ui
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
 import com.antonprokopov.appstartup.databinding.FragmentSplashBinding
@@ -19,6 +20,9 @@ class SplashFragment : BaseViewBindingFragment<FragmentSplashBinding>() {
     @Inject
     lateinit var feedRouter: AlbumsFeedRouter
 
+    @Inject
+    lateinit var ui: SplashUI
+
     override fun createViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,5 +35,14 @@ class SplashFragment : BaseViewBindingFragment<FragmentSplashBinding>() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AppStartupComponentHolder.initComponent().inject(this)
+        ui.setLifecycleOwnerAndCreateViewModel(this)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
