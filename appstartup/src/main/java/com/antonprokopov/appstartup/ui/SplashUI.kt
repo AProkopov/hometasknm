@@ -1,27 +1,29 @@
 package com.antonprokopov.appstartup.ui
 
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
 import com.antonprokopov.appstartup.viewmodel.SplashVm
 import javax.inject.Inject
 
 
-class SplashUI @Inject constructor(private val feedRouter: AlbumsFeedRouter) {
+class SplashUI @Inject constructor(
+    private val activityLifecycleOwnerHolder: ActivityLifecycleOwnerHolder,
+    private val splashVm: SplashVm,
+    private val feedRouter: AlbumsFeedRouter,
+    private val context: Context
+    ) {
 
-    private lateinit var splashVm: SplashVm
-
-    fun initialize(owner: Fragment) {
-        splashVm = ViewModelProvider(owner).get(SplashVm::class.java)
-        initSubscriptions(owner)
+    init {
+        initSubscriptions()
         getAppInitialData()
     }
 
-    private fun initSubscriptions(owner: Fragment) {
+
+    private fun initSubscriptions() {
         splashVm.initialDataLiveData.observe(
-            owner,
+            activityLifecycleOwnerHolder.lifecycleOwner,
             {
-                feedRouter.openAlbumsFeed(owner.requireContext())
+                feedRouter.openAlbumsFeed(context)
             } // doAction
         )
     }

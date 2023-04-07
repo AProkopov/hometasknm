@@ -1,5 +1,6 @@
 package com.antonprokopov.appstartup.di
 
+import com.antonprokopov.appstartup.ui.SplashActivity
 import com.antonprokopov.appstartup.ui.SplashFragment
 import com.antonprokopov.appstartup.viewmodel.SplashVm
 import com.antonprokopov.core.di.ParentComponentProvider
@@ -15,6 +16,7 @@ annotation class AppStartupScope
 interface AppStartupComponent {
     fun inject(fragment: SplashFragment)
     fun inject(splashVm: SplashVm)
+    fun inject(activity: SplashActivity)
 }
 
 interface AppStartupParentComponent {

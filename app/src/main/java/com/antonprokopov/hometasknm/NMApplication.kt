@@ -13,7 +13,7 @@ class NMApplication: Application() {
 
     private fun createComponent(): MergedAppComponent {
         val component = DaggerMergedAppComponent.builder()
-            .mergedAppModule(MergedAppModule())
+            .mergedAppModule(MergedAppModule(applicationContext))
             .build()
         return component
 
