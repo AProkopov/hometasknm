@@ -5,4 +5,7 @@ import javax.inject.Inject
 
 @AppStartupScope
 class GetInitDataUseCase @Inject constructor() {
+
+
+
 }

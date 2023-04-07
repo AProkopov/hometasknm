@@ -16,10 +16,10 @@ class SplashVm : ViewModel() {
         AppStartupComponentHolder.getComponent()?.inject(this)
     }
 
-    val userLiveData: MutableLiveData<Any> = MutableLiveData<Any>()
+    val initialDataLiveData: MutableLiveData<Any> = MutableLiveData<Any>()
 
 
-    fun doAction() {
+    fun getInitialData() {
         // depending on the action, do necessary business logic calls and update the
         // userLiveData.
     }
