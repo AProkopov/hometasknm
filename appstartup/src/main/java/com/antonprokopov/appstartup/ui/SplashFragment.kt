@@ -1,16 +1,23 @@
 package com.antonprokopov.appstartup.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
 import com.antonprokopov.appstartup.databinding.FragmentSplashBinding
+import com.antonprokopov.appstartup.di.AppStartupComponentHolder
 import com.antonprokopov.core.ui.BaseViewBindingFragment
+import javax.inject.Inject
 
 class SplashFragment : BaseViewBindingFragment<FragmentSplashBinding>() {
 
     companion object {
         const val TAG = "SplashFragment"
     }
+
+    @Inject
+    lateinit var feedRouter: AlbumsFeedRouter
 
     override fun createViewBinding(
         inflater: LayoutInflater,
@@ -19,5 +26,10 @@ class SplashFragment : BaseViewBindingFragment<FragmentSplashBinding>() {
         savedInstanceState: Bundle?
     ): FragmentSplashBinding {
         return FragmentSplashBinding.inflate(inflater, container, attachedToRoot)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AppStartupComponentHolder.initComponent().inject(this)
     }
 }
