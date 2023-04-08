@@ -2,7 +2,6 @@ package com.antonprokopov.appstartup.ui
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
 import com.antonprokopov.appstartup.databinding.FragmentSplashBinding
 import com.antonprokopov.appstartup.viewmodel.SplashVm
@@ -31,15 +30,17 @@ class SplashUI @Inject constructor(
         splashVm.initialDataLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
-                feedRouter.openAlbumsFeed(context)
+                navigateAndCloseCurrentActivity()
             }
         )
 
         splashVm.loadingStateLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
-                //show loading
-                Log.d("AZAZA", it.toString())
+                /**
+                 * Here we can show loading state or run animations.
+                 * But our current splash screen is static.
+                 */
             }
         )
 
@@ -50,11 +51,16 @@ class SplashUI @Inject constructor(
                  * In case of failed application initial data fetching we can route
                  * to any specific screen (login screen or some non-auth screen).
                  * In this test application we don't use any real initialization data,
-                 * then we will be routed to the same screen as in success case
+                 * then we will be routed to the same screen as in success case.
                 */
-                feedRouter.openAlbumsFeed(context)
+                navigateAndCloseCurrentActivity()
             }
         )
+    }
+
+    private fun navigateAndCloseCurrentActivity() {
+        feedRouter.openAlbumsFeed(context)
+        (activityLifecycleOwnerHolder.lifecycleOwner as Activity).finish()
     }
 
     private fun getAppInitialData() {
