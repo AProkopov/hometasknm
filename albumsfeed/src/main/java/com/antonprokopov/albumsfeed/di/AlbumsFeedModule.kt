@@ -1,6 +1,7 @@
 package com.antonprokopov.albumsfeed.di
 
 import androidx.lifecycle.ViewModelProvider
+import com.antonprokopov.albumsfeed.BuildConfig
 import com.antonprokopov.albumsfeed.data.api.ApiService
 import com.antonprokopov.albumsfeed.viewmodel.AlbumsViewModel
 import com.antonprokopov.core.ui.ActivityLifecycleOwnerHolder
@@ -17,7 +18,7 @@ class AlbumsFeedModule {
         networkResources: NetworkResources
     ): ApiService {
         return networkResources.createRetrofit()
-            .baseUrl("https://jsonplaceholder.typicode.com") //TODO get this url from config to support release and debug versions
+            .baseUrl(BuildConfig.API_BASE_URL)
             .build()
             .create(ApiService::class.java)
     }
@@ -30,5 +31,4 @@ class AlbumsFeedModule {
     @Provides
     fun provideSplashVm(activityLifecycleOwnerHolder: ActivityLifecycleOwnerHolder): AlbumsViewModel =
         ViewModelProvider(activityLifecycleOwnerHolder.viewModelStoreOwner).get(AlbumsViewModel::class.java)
-
 }

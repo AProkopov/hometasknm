@@ -2,7 +2,7 @@ package com.antonprokopov.appstartup.di
 
 import com.antonprokopov.appstartup.ui.SplashActivity
 import com.antonprokopov.appstartup.ui.SplashFragment
-import com.antonprokopov.appstartup.viewmodel.SplashVm
+import com.antonprokopov.appstartup.viewmodel.SplashViewModel
 import com.antonprokopov.core.di.ParentComponentProvider
 import dagger.Subcomponent
 import javax.inject.Scope
@@ -12,10 +12,10 @@ import javax.inject.Scope
 annotation class AppStartupScope
 
 @AppStartupScope
-@Subcomponent(modules = [AppStartupModule::class, AppStartupUiModule::class])
+@Subcomponent(modules = [AppStartupModule::class])
 interface AppStartupComponent {
     fun inject(fragment: SplashFragment)
-    fun inject(splashVm: SplashVm)
+    fun inject(splashViewModel: SplashViewModel)
     fun inject(activity: SplashActivity)
 }
 

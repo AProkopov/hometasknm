@@ -4,15 +4,14 @@ import android.app.Activity
 import android.content.Context
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
 import com.antonprokopov.appstartup.databinding.FragmentSplashBinding
-import com.antonprokopov.appstartup.viewmodel.SplashVm
+import com.antonprokopov.appstartup.viewmodel.SplashViewModel
 import com.antonprokopov.core.ui.ActivityLifecycleOwnerHolder
 import com.antonprokopov.core.ui.ViewBindingUi
 import javax.inject.Inject
 
-
 class SplashUI @Inject constructor(
     private val activityLifecycleOwnerHolder: ActivityLifecycleOwnerHolder,
-    private val splashVm: SplashVm,
+    private val splashViewModel: SplashViewModel,
     private val feedRouter: AlbumsFeedRouter,
     private val context: Context
     ): ViewBindingUi<FragmentSplashBinding>() {
@@ -23,14 +22,14 @@ class SplashUI @Inject constructor(
     }
 
     private fun initSubscriptions() {
-        splashVm.initialDataLiveData.observe(
+        splashViewModel.initialDataLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
                 navigateAndCloseCurrentActivity()
             }
         )
 
-        splashVm.loadingStateLiveData.observe(
+        splashViewModel.loadingStateLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
                 /**
@@ -40,7 +39,7 @@ class SplashUI @Inject constructor(
             }
         )
 
-        splashVm.errorStateLiveData.observe(
+        splashViewModel.errorStateLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
                 /**
@@ -60,7 +59,6 @@ class SplashUI @Inject constructor(
     }
 
     private fun getAppInitialData() {
-        splashVm.getInitialData()
+        splashViewModel.getInitialData()
     }
-
 }

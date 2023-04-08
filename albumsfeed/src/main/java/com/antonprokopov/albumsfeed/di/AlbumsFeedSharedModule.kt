@@ -10,5 +10,4 @@ class AlbumsFeedSharedModule {
 
     @Provides
     fun provideMyOffersRouter(): AlbumsFeedRouter = AlbumsFeedRouterImpl()
-
 }

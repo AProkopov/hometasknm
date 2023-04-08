@@ -56,5 +56,4 @@ class AlbumsUseCase @Inject constructor(private val apiService: ApiService) {
 
         return extendedAlbums
     }
-
 }

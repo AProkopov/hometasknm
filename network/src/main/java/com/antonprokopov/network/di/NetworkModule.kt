@@ -11,5 +11,4 @@ class NetworkModule {
     @Provides
     @Singleton
     internal fun provideNetworkResources(): NetworkResources = NetworkResources()
-
 }

@@ -24,5 +24,4 @@ class GetInitDataUseCase @Inject constructor() {
             emit(Resource.newSuccess(true))
         }
     }
-
 }

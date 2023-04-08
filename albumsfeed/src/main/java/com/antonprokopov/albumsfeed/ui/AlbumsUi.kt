@@ -17,7 +17,6 @@ import com.antonprokopov.core.ui.EmptyStateView
 import com.antonprokopov.core.ui.ViewBindingUi
 import javax.inject.Inject
 
-
 class AlbumsUi  @Inject constructor(
     private val activityLifecycleOwnerHolder: ActivityLifecycleOwnerHolder,
     private val albumsVm: AlbumsViewModel,

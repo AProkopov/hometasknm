@@ -5,7 +5,6 @@ import com.antonprokopov.albumsfeed.data.models.ExtendedAlbumDto
 import com.antonprokopov.albumsfeed.databinding.ItemAlbumBinding
 import com.antonprokopov.core.utils.PicassoHelper
 
-
 class AlbumViewHolder(itemViewBinding: ItemAlbumBinding) : RecyclerView.ViewHolder(itemViewBinding.root) {
 
     private val albumThumbnail = itemViewBinding.albumThumbnail

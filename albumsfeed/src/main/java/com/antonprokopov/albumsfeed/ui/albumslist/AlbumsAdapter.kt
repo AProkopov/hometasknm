@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.antonprokopov.albumsfeed.data.models.ExtendedAlbumDto
 import com.antonprokopov.albumsfeed.databinding.ItemAlbumBinding
 
-
 class AlbumsAdapter(context: Context) : RecyclerView.Adapter<AlbumViewHolder>() {
 
     private var albumItems: List<ExtendedAlbumDto> = emptyList()

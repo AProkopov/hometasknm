@@ -23,5 +23,4 @@ class NetworkResources {
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
     }
-
 }

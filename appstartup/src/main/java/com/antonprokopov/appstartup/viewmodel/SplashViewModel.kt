@@ -1,6 +1,5 @@
 package com.antonprokopov.appstartup.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,8 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
-class SplashVm : ViewModel() {
+class SplashViewModel : ViewModel() {
 
     @Inject
     lateinit var getInitDataUseCase: GetInitDataUseCase

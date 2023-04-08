@@ -15,5 +15,4 @@ interface ApiService {
 
     @GET("/albums")
     suspend fun getAlbums(): List<AlbumDto>
-
 }
