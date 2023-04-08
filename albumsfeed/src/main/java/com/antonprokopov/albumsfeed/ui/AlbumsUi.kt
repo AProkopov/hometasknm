@@ -33,6 +33,7 @@ class AlbumsUi  @Inject constructor(
             rvAlbums.adapter = AlbumsAdapter(context)
             rvAlbums.layoutManager = LinearLayoutManager(context)
             swipeRefreshLayoutAlbums.setOnRefreshListener(::getAlbums)
+            emptyStateView.setRetryCallback(::getAlbums)
 
             setDecorationToAlbumsList(rvAlbums)
         }
@@ -69,15 +70,17 @@ class AlbumsUi  @Inject constructor(
 
     private fun showErrorState() {
         fragmentViewBinding?.apply {
-            emptyStateView.setState(EmptyStateView.EmptyState.ERROR, ::getAlbums)
+            emptyStateView.setState(EmptyStateView.EmptyState.ERROR)
             emptyStateView.visible()
+            swipeRefreshLayoutAlbums.gone()
         }
     }
 
     private fun showEmptyState() {
         fragmentViewBinding?.apply {
-            emptyStateView.setState(EmptyStateView.EmptyState.EMPTY, ::getAlbums, R.string.albumsfeed_no_albums_text)
+            emptyStateView.setState(EmptyStateView.EmptyState.EMPTY, R.string.albumsfeed_no_albums_text)
             emptyStateView.visible()
+            swipeRefreshLayoutAlbums.gone()
         }
     }
 
@@ -92,6 +95,7 @@ class AlbumsUi  @Inject constructor(
     private fun showAlbums(albums: List<ExtendedAlbumDto>) {
         fragmentViewBinding?.apply {
             emptyStateView.gone()
+            swipeRefreshLayoutAlbums.visible()
             (rvAlbums.adapter as? AlbumsAdapter)?.setList(albums)
         }
     }

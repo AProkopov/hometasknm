@@ -32,7 +32,6 @@ class EmptyStateView @JvmOverloads constructor(
 
     fun setState(
         state: EmptyState,
-        retryCallback: () -> Unit,
         @StringRes emptyStateTextResId: Int ? = null,
         @DrawableRes emptyImageResId: Int = R.drawable.core_ic_no_photo
     ) {
@@ -47,8 +46,10 @@ class EmptyStateView @JvmOverloads constructor(
             }
         }
 
-        retryBtn.setOnClickListener { retryCallback.invoke() }
-
         emptyStateImage.setImageDrawable(emptyStateDrawable)
+    }
+
+    fun setRetryCallback(retryCallback: () -> Unit) {
+        retryBtn.setOnClickListener { retryCallback.invoke() }
     }
 }
