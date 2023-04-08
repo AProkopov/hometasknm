@@ -8,9 +8,9 @@ data class PhotoDto(
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("title")
-    val title: Int? = null,
+    val title: String? = null,
     @SerializedName("url")
-    val url: Int? = null,
+    val url: String? = null,
     @SerializedName("thumbnailUrl")
-    val thumbnailUrl: Int? = null
+    val thumbnailUrl: String? = null
 )

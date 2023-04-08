@@ -3,6 +3,7 @@ package com.antonprokopov.albumsfeed.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.antonprokopov.albumsfeed.data.models.ExtendedAlbumDto
 import com.antonprokopov.albumsfeed.di.AlbumsFeedComponentHolder
 import com.antonprokopov.albumsfeed.usecase.AlbumsUseCase
 import com.antonprokopov.core.data.Resource
@@ -21,16 +22,16 @@ class AlbumsViewModel: ViewModel() {
         AlbumsFeedComponentHolder.getComponent()?.inject(this)
     }
 
-    val albumsDataLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-    val loadingStateLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-    val errorStateLiveData: MutableLiveData<Resource.ErrorDesc> = MutableLiveData<Resource.ErrorDesc>()
+    val albumsDataLiveData = MutableLiveData<List<ExtendedAlbumDto>>()
+    val loadingStateLiveData = MutableLiveData<Boolean>()
+    val errorStateLiveData = MutableLiveData<Resource.ErrorDesc>()
 
     fun getAlbumPreviews() {
         viewModelScope.launch {
             albumsUseCase.execute()
                 .flowOn(Dispatchers.IO)
                 .catch { e ->
-                    albumsDataLiveData.value = false
+                    errorStateLiveData.value = Resource.ErrorDesc()
                 }
                 .collect {
                     loadingStateLiveData.value = it is Resource.Loading
