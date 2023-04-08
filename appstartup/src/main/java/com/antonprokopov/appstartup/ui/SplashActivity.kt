@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.antonprokopov.appstartup.R
 import com.antonprokopov.appstartup.di.AppStartupComponentHolder
+import com.antonprokopov.core.ui.ActivityLifecycleOwnerHolder
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {

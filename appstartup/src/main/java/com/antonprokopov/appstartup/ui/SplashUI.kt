@@ -5,6 +5,8 @@ import android.content.Context
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
 import com.antonprokopov.appstartup.databinding.FragmentSplashBinding
 import com.antonprokopov.appstartup.viewmodel.SplashVm
+import com.antonprokopov.core.ui.ActivityLifecycleOwnerHolder
+import com.antonprokopov.core.ui.ViewBindingUi
 import javax.inject.Inject
 
 
@@ -13,17 +15,11 @@ class SplashUI @Inject constructor(
     private val splashVm: SplashVm,
     private val feedRouter: AlbumsFeedRouter,
     private val context: Context
-    ) {
+    ): ViewBindingUi<FragmentSplashBinding>() {
 
     init {
         initSubscriptions()
         getAppInitialData()
-    }
-
-    private var fragmentViewBinding: FragmentSplashBinding? = null
-
-    fun setViewBinding(fragmentViewBinding: FragmentSplashBinding) {
-        this.fragmentViewBinding = fragmentViewBinding
     }
 
     private fun initSubscriptions() {

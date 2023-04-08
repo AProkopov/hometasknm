@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.antonprokopov.albumsfeed.R
+import com.antonprokopov.albumsfeed.di.AlbumsFeedComponentHolder
+import com.antonprokopov.core.ui.ActivityLifecycleOwnerHolder
+import javax.inject.Inject
 
 class AlbumsActivity : AppCompatActivity() {
 
@@ -16,9 +19,13 @@ class AlbumsActivity : AppCompatActivity() {
         }
     }
 
+    @Inject
+    lateinit var activityLifecycleOwnerHolder: ActivityLifecycleOwnerHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AlbumsFeedComponentHolder.initComponent().inject(this)
+        activityLifecycleOwnerHolder.init(this)
 
         setContentView(R.layout.activity_albums_feed)
 
@@ -27,5 +34,10 @@ class AlbumsActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_feed_container, fragment, AlbumsFragment.TAG)
         transaction.commit()
+    }
+
+    override fun onDestroy() {
+        AlbumsFeedComponentHolder.releaseComponent()
+        super.onDestroy()
     }
 }

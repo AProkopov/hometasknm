@@ -1,5 +1,6 @@
 package com.antonprokopov.hometasknm
 
+import com.antonprokopov.albumsfeed.di.AlbumsFeedParentComponent
 import com.antonprokopov.appstartup.di.AppStartupParentComponent
 import com.antonprokopov.appstartup.di.AppStartupUiModule
 import com.antonprokopov.core.di.ComponentParent
@@ -9,5 +10,5 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [MergedAppModule::class, AppStartupUiModule::class, NetworkModule::class])
-interface MergedAppComponent: AppStartupParentComponent, ComponentParent {
+interface MergedAppComponent: AppStartupParentComponent, AlbumsFeedParentComponent, ComponentParent {
 }

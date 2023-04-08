@@ -1,4 +1,6 @@
 package com.antonprokopov.albumsfeed.viewmodel
 
-class AlbumsViewModel {
+import androidx.lifecycle.ViewModel
+
+class AlbumsViewModel: ViewModel() {
 }

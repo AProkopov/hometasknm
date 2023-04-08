@@ -41,8 +41,6 @@ class SplashFragment : BaseViewBindingFragment<FragmentSplashBinding>() {
         super.onAttach(context)
     }
 
-
-
     override fun onDetach() {
         AppStartupComponentHolder.releaseComponent()
         super.onDetach()
