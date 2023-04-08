@@ -26,8 +26,11 @@ class AlbumsUi  @Inject constructor(
     }
 
     fun initUI() {
-        fragmentViewBinding?.rvAlbums?.adapter = AlbumsAdapter(context)
-        fragmentViewBinding?.rvAlbums?.layoutManager = LinearLayoutManager(context)
+        fragmentViewBinding?.apply {
+            rvAlbums.adapter = AlbumsAdapter(context)
+            rvAlbums.layoutManager = LinearLayoutManager(context)
+            swipeRefreshLayoutAlbums.setOnRefreshListener(::getAlbums)
+        }
 
         getAlbums()
     }
@@ -77,6 +80,7 @@ class AlbumsUi  @Inject constructor(
         fragmentViewBinding?.apply {
             emptyStateView.gone()
             loadingView.setVisibleOrGone(isLoading)
+            swipeRefreshLayoutAlbums.isRefreshing = false
         }
     }
 
