@@ -1,12 +1,14 @@
 package com.antonprokopov.albumsfeed.ui
 
 import android.content.Context
+import com.antonprokopov.albumsfeed.R
 import com.antonprokopov.albumsfeed.databinding.FragmentAlbumsFeedBinding
 import com.antonprokopov.albumsfeed.viewmodel.AlbumsViewModel
 import com.antonprokopov.core.extensions.gone
 import com.antonprokopov.core.extensions.setVisibleOrGone
 import com.antonprokopov.core.extensions.visible
 import com.antonprokopov.core.ui.ActivityLifecycleOwnerHolder
+import com.antonprokopov.core.ui.EmptyStateView
 import com.antonprokopov.core.ui.ViewBindingUi
 import javax.inject.Inject
 
@@ -18,7 +20,7 @@ class AlbumsUi  @Inject constructor(
 
     init {
         initSubscriptions()
-        getAppInitialData()
+        getAlbums()
     }
 
     private fun initSubscriptions() {
@@ -49,23 +51,31 @@ class AlbumsUi  @Inject constructor(
     }
 
     private fun showErrorState() {
-        fragmentViewBinding?.emptyStateContainer.visible()
+        fragmentViewBinding?.apply {
+            emptyStateView.setState(EmptyStateView.EmptyState.ERROR, ::getAlbums)
+            emptyStateView.visible()
+        }
     }
 
     private fun showEmptyState() {
-        fragmentViewBinding?.emptyStateContainer.visible()
+        fragmentViewBinding?.apply {
+            emptyStateView.setState(EmptyStateView.EmptyState.EMPTY, ::getAlbums, R.string.albumsfeed_no_albums_text)
+            emptyStateView.visible()
+        }
     }
 
     private fun showLoadingState(isLoading: Boolean) {
-        fragmentViewBinding?.emptyStateContainer.gone()
-        fragmentViewBinding?.loadingView.setVisibleOrGone(isLoading)
+        fragmentViewBinding?.apply {
+            emptyStateView.gone()
+            loadingView.setVisibleOrGone(isLoading)
+        }
     }
 
     private fun showAlbums() {
-        fragmentViewBinding?.emptyStateContainer.gone()
+        fragmentViewBinding?.emptyStateView.gone()
     }
 
-    private fun getAppInitialData() {
+    private fun getAlbums() {
         albumsVm.getAlbumPreviews()
     }
 }

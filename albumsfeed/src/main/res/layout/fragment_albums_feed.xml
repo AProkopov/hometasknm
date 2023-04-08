@@ -23,8 +23,8 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/emptyStateContainer"
+    <com.antonprokopov.core.ui.EmptyStateView
+        android:id="@+id/emptyStateView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,26 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/icon_splash"
-            android:layout_width="@dimen/albumsfeed_error_icon_size"
-            android:layout_height="@dimen/albumsfeed_error_icon_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/splash_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/albumsfeed_error_title_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon_splash" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.antonprokopov.core.ui.EmptyStateView>
 
     <FrameLayout
         android:id="@+id/loadingView"

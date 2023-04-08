@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="albumsfeed_no_albums_text">Albums list is empty</string>
-    <string name="albumsfeed_error_text">Unfortunately an error occurred</string>
 </resources>
