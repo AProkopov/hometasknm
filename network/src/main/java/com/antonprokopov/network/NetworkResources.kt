@@ -12,7 +12,7 @@ class NetworkResources {
         private const val WRITE_READ_TIMEOUT_SECONDS = 30L
     }
 
-    internal fun createRetrofit(): Retrofit.Builder {
+    fun createRetrofit(): Retrofit.Builder {
         val httpClient = OkHttpClient.Builder()
             .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .writeTimeout(WRITE_READ_TIMEOUT_SECONDS, TimeUnit.SECONDS)

@@ -1,4 +1,4 @@
-package com.antonprokopov.network
+package com.antonprokopov.albumsfeed.data
 
 import retrofit2.http.GET
 

@@ -1,7 +1,9 @@
 package com.antonprokopov.albumsfeed.di
 
+import com.antonprokopov.albumsfeed.data.ApiService
 import com.antonprokopov.albumsfeed.ui.AlbumsFeedRouterImpl
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
+import com.antonprokopov.network.NetworkResources
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -11,5 +13,16 @@ class AlbumsFeedModule {
 
     @Provides
     fun provideMyOffersRouter(): AlbumsFeedRouter = AlbumsFeedRouterImpl()
+
+    @Provides
+    @Singleton
+    internal fun provideApiService(
+        networkResources: NetworkResources
+    ): ApiService {
+        return networkResources.createRetrofit()
+            .baseUrl("https://testurl")
+            .build()
+            .create(ApiService::class.java)
+    }
 
 }
