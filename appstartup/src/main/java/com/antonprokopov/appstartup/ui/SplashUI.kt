@@ -1,8 +1,10 @@
 package com.antonprokopov.appstartup.ui
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
+import com.antonprokopov.appstartup.databinding.FragmentSplashBinding
 import com.antonprokopov.appstartup.viewmodel.SplashVm
 import javax.inject.Inject
 
@@ -18,7 +20,13 @@ class SplashUI @Inject constructor(
         initSubscriptions()
         getAppInitialData()
     }
-    
+
+    private var fragmentViewBinding: FragmentSplashBinding? = null
+
+    fun setViewBinding(fragmentViewBinding: FragmentSplashBinding) {
+        this.fragmentViewBinding = fragmentViewBinding
+    }
+
     private fun initSubscriptions() {
         splashVm.initialDataLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
