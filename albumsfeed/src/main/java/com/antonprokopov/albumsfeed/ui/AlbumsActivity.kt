@@ -23,9 +23,9 @@ class AlbumsActivity : AppCompatActivity() {
     lateinit var activityLifecycleOwnerHolder: ActivityLifecycleOwnerHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         AlbumsFeedComponentHolder.initComponent().inject(this)
         activityLifecycleOwnerHolder.init(this)
+        super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_albums_feed)
 
