@@ -1,6 +1,6 @@
 package com.antonprokopov.albumsfeed.di
 
-import com.antonprokopov.albumsfeed.data.ApiService
+import com.antonprokopov.albumsfeed.data.api.ApiService
 import com.antonprokopov.albumsfeed.ui.AlbumsFeedRouterImpl
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
 import com.antonprokopov.network.NetworkResources
@@ -20,7 +20,7 @@ class AlbumsFeedModule {
         networkResources: NetworkResources
     ): ApiService {
         return networkResources.createRetrofit()
-            .baseUrl("https://testurl")
+            .baseUrl("https://jsonplaceholder.typicode.com")
             .build()
             .create(ApiService::class.java)
     }
