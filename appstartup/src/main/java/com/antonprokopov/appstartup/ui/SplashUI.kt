@@ -1,6 +1,7 @@
 package com.antonprokopov.appstartup.ui
 
 import android.content.Context
+import android.util.Log
 import com.antonprokopov.albumsfeedapi.route.AlbumsFeedRouter
 import com.antonprokopov.appstartup.viewmodel.SplashVm
 import javax.inject.Inject
@@ -17,14 +18,34 @@ class SplashUI @Inject constructor(
         initSubscriptions()
         getAppInitialData()
     }
-
-
+    
     private fun initSubscriptions() {
         splashVm.initialDataLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
                 feedRouter.openAlbumsFeed(context)
-            } // doAction
+            }
+        )
+
+        splashVm.loadingStateLiveData.observe(
+            activityLifecycleOwnerHolder.lifecycleOwner,
+            {
+                //show loading
+                Log.d("AZAZA", it.toString())
+            }
+        )
+
+        splashVm.errorStateLiveData.observe(
+            activityLifecycleOwnerHolder.lifecycleOwner,
+            {
+                /**
+                 * In case of failed application initial data fetching we can route
+                 * to any specific screen (login screen or some non-auth screen).
+                 * In this test application we don't use any real initialization data,
+                 * then we will be routed to the same screen as in success case
+                */
+                feedRouter.openAlbumsFeed(context)
+            }
         )
     }
 
