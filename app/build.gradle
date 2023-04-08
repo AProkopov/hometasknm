@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "32.0.0"
+    compileSdkVersion app_compileSdkVersion
+    buildToolsVersion app_buildToolsVersion
 
     defaultConfig {
         applicationId "com.antonprokopov.hometasknm"
-        minSdkVersion 23
-        targetSdkVersion 31
+        minSdkVersion app_minSdkVersion
+        targetSdkVersion app_targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     implementation "androidx.constraintlayout:constraintlayout:$androidx_constraintlayout_version"
 
@@ -46,9 +48,6 @@ dependencies {
     implementation project(path: ':albumsfeed-api')
     implementation project(path: ':network')
     implementation project(path: ':core')
-
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$androidx_ext_junit_version"

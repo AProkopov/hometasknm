@@ -16,6 +16,11 @@ buildscript {
     ext.retrofit_version = "2.9.0"
     ext.kotlinx_coroutines_version = "1.5.2"
 
+    ext.app_minSdkVersion = 23
+    ext.app_targetSdkVersion = 31
+    ext.app_compileSdkVersion = 31
+    ext.app_buildToolsVersion = "32.0.0"
+
 
     repositories {
         google()
