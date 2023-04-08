@@ -1,7 +1,9 @@
 package com.antonprokopov.albumsfeed.ui
 
 import android.content.Context
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.antonprokopov.albumsfeed.R
 import com.antonprokopov.albumsfeed.data.models.ExtendedAlbumDto
 import com.antonprokopov.albumsfeed.databinding.FragmentAlbumsFeedBinding
@@ -14,6 +16,7 @@ import com.antonprokopov.core.ui.ActivityLifecycleOwnerHolder
 import com.antonprokopov.core.ui.EmptyStateView
 import com.antonprokopov.core.ui.ViewBindingUi
 import javax.inject.Inject
+
 
 class AlbumsUi  @Inject constructor(
     private val activityLifecycleOwnerHolder: ActivityLifecycleOwnerHolder,
@@ -30,6 +33,8 @@ class AlbumsUi  @Inject constructor(
             rvAlbums.adapter = AlbumsAdapter(context)
             rvAlbums.layoutManager = LinearLayoutManager(context)
             swipeRefreshLayoutAlbums.setOnRefreshListener(::getAlbums)
+
+            setDecorationToAlbumsList(rvAlbums)
         }
 
         getAlbums()
@@ -93,5 +98,13 @@ class AlbumsUi  @Inject constructor(
 
     private fun getAlbums() {
         albumsVm.getAlbumPreviews()
+    }
+
+    private fun setDecorationToAlbumsList(recyclerView: RecyclerView) {
+        val dividerItemDecoration = DividerItemDecoration(
+            recyclerView.getContext(),
+            DividerItemDecoration.VERTICAL
+        )
+        recyclerView.addItemDecoration(dividerItemDecoration)
     }
 }
