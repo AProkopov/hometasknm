@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="albumsfeed_error_icon_size">150dp</dimen>
+    <dimen name="albumsfeed_error_title_text_size">24sp</dimen>
+    <dimen name="albumsfeed_title_text_size">24sp</dimen>
+
+    <dimen name="albumsfeed_retry_btn_text_size">24sp</dimen>
+    <dimen name="albumsfeed_retry_btn_height">32dp</dimen>
+
+    <dimen name="albumsfeed_progress_bar_size">64dp</dimen>
+</resources>

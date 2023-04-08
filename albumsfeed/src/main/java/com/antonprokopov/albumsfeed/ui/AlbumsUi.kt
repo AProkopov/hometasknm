@@ -1,9 +1,11 @@
 package com.antonprokopov.albumsfeed.ui
 
 import android.content.Context
-import android.util.Log
 import com.antonprokopov.albumsfeed.databinding.FragmentAlbumsFeedBinding
 import com.antonprokopov.albumsfeed.viewmodel.AlbumsViewModel
+import com.antonprokopov.core.extensions.gone
+import com.antonprokopov.core.extensions.setVisibleOrGone
+import com.antonprokopov.core.extensions.visible
 import com.antonprokopov.core.ui.ActivityLifecycleOwnerHolder
 import com.antonprokopov.core.ui.ViewBindingUi
 import javax.inject.Inject
@@ -23,28 +25,44 @@ class AlbumsUi  @Inject constructor(
         albumsVm.albumsDataLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
-                showAlbums()
-                Log.d("AZAZA", it.size.toString())
+                if (it.isEmpty()) {
+                    showEmptyState()
+                } else {
+                    showAlbums()
+                }
             }
         )
 
         albumsVm.loadingStateLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
-                Log.d("AZAZA loading", it.toString())
+                showLoadingState(it)
             }
         )
 
         albumsVm.errorStateLiveData.observe(
             activityLifecycleOwnerHolder.lifecycleOwner,
             {
-
+                showErrorState()
             }
         )
     }
 
-    private fun showAlbums() {
+    private fun showErrorState() {
+        fragmentViewBinding?.emptyStateContainer.visible()
+    }
 
+    private fun showEmptyState() {
+        fragmentViewBinding?.emptyStateContainer.visible()
+    }
+
+    private fun showLoadingState(isLoading: Boolean) {
+        fragmentViewBinding?.emptyStateContainer.gone()
+        fragmentViewBinding?.loadingView.setVisibleOrGone(isLoading)
+    }
+
+    private fun showAlbums() {
+        fragmentViewBinding?.emptyStateContainer.gone()
     }
 
     private fun getAppInitialData() {

@@ -31,7 +31,7 @@ class AlbumsViewModel: ViewModel() {
             albumsUseCase.execute()
                 .flowOn(Dispatchers.IO)
                 .catch { e ->
-                    errorStateLiveData.value = Resource.ErrorDesc()
+                    errorStateLiveData.value = Resource.ErrorDesc(message = e.message)
                 }
                 .collect {
                     loadingStateLiveData.value = it is Resource.Loading

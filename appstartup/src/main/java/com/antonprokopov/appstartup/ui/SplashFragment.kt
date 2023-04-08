@@ -33,7 +33,7 @@ class SplashFragment : BaseViewBindingFragment<FragmentSplashBinding>() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState).also { ui.setViewBinding(this.viewBinding) }
+        return super.onCreateView(inflater, container, savedInstanceState).also { ui.fragmentViewBinding = this.viewBinding }
     }
 
     override fun onAttach(context: Context) {
