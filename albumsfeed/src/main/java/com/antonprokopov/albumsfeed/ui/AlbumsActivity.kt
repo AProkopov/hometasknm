@@ -9,9 +9,11 @@ import com.antonprokopov.albumsfeed.R
 class AlbumsActivity : AppCompatActivity() {
 
     companion object {
-        fun newIntent(context: Context) =
-            Intent(context, AlbumsActivity::class.java)
-//                .putExtra(INITIAL_PHOTO_COUNT_KEY, initialPhotoCount)
+        fun newIntent(context: Context): Intent {
+            val intent = Intent(context, AlbumsActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            return intent
+        }
     }
 
 

@@ -11,10 +11,12 @@ import javax.inject.Inject
 class GetInitDataUseCase @Inject constructor() {
 
     companion object {
-        private const val FAKE_APP_STARTUP_DATA_RESPONSE_DELAY_MILLIS = 10000L
+        private const val FAKE_APP_STARTUP_DATA_RESPONSE_DELAY_MILLIS = 1000L
     }
 
-    //Here I simulate network request on application startup (getting initial data on splash screen)
+    /**
+     * Here we simulate network request on application startup (getting initial data on splash screen)
+    */
     suspend fun execute(): Flow<Resource<Boolean>> {
         return flow {
             emit(Resource.newLoading())
