@@ -35,6 +35,7 @@ class AlbumsFragment : BaseViewBindingFragment<FragmentAlbumsFeedBinding>() {
     ): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
             .also { albumsUi.fragmentViewBinding = this.viewBinding }
+            .also { albumsUi.initUI() }
     }
 
     override fun onAttach(context: Context) {

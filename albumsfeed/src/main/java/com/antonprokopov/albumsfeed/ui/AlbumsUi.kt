@@ -1,8 +1,11 @@
 package com.antonprokopov.albumsfeed.ui
 
 import android.content.Context
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.antonprokopov.albumsfeed.R
+import com.antonprokopov.albumsfeed.data.models.ExtendedAlbumDto
 import com.antonprokopov.albumsfeed.databinding.FragmentAlbumsFeedBinding
+import com.antonprokopov.albumsfeed.ui.albumslist.AlbumsAdapter
 import com.antonprokopov.albumsfeed.viewmodel.AlbumsViewModel
 import com.antonprokopov.core.extensions.gone
 import com.antonprokopov.core.extensions.setVisibleOrGone
@@ -20,6 +23,12 @@ class AlbumsUi  @Inject constructor(
 
     init {
         initSubscriptions()
+    }
+
+    fun initUI() {
+        fragmentViewBinding?.rvAlbums?.adapter = AlbumsAdapter(context)
+        fragmentViewBinding?.rvAlbums?.layoutManager = LinearLayoutManager(context)
+
         getAlbums()
     }
 
@@ -30,7 +39,7 @@ class AlbumsUi  @Inject constructor(
                 if (it.isEmpty()) {
                     showEmptyState()
                 } else {
-                    showAlbums()
+                    showAlbums(it)
                 }
             }
         )
@@ -71,8 +80,11 @@ class AlbumsUi  @Inject constructor(
         }
     }
 
-    private fun showAlbums() {
-        fragmentViewBinding?.emptyStateView.gone()
+    private fun showAlbums(albums: List<ExtendedAlbumDto>) {
+        fragmentViewBinding?.apply {
+            emptyStateView.gone()
+            (rvAlbums.adapter as? AlbumsAdapter)?.setList(albums)
+        }
     }
 
     private fun getAlbums() {
