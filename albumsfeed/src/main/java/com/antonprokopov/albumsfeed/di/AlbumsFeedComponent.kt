@@ -2,6 +2,7 @@ package com.antonprokopov.albumsfeed.di
 
 import com.antonprokopov.albumsfeed.ui.AlbumsActivity
 import com.antonprokopov.albumsfeed.ui.AlbumsFragment
+import com.antonprokopov.albumsfeed.viewmodel.AlbumsViewModel
 import com.antonprokopov.core.di.ParentComponentProvider
 import dagger.Subcomponent
 import javax.inject.Scope
@@ -15,6 +16,7 @@ annotation class AlbumsFeedScope
 interface AlbumsFeedComponent {
     fun inject(activity: AlbumsActivity)
     fun inject(fragment: AlbumsFragment)
+    fun inject(albumsViewModel: AlbumsViewModel)
 }
 
 interface AlbumsFeedParentComponent {
