@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="core_retry_btn_text_size">24sp</dimen>
+    <dimen name="core_retry_btn_height">48dp</dimen>
+
+    <dimen name="core_error_icon_size">150dp</dimen>
+    <dimen name="core_error_title_text_size">24sp</dimen>
+</resources>

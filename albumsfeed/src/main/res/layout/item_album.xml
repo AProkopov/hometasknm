@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/album_thumbnail"
+        android:layout_width="@dimen/albumsfeed_item_image_size"
+        android:layout_height="@dimen/albumsfeed_item_image_size"
+        android:layout_marginTop="@dimen/albumsfeed_item_standard_padding"
+        android:layout_marginBottom="@dimen/albumsfeed_item_standard_padding"
+        android:layout_marginStart="@dimen/albumsfeed_item_image_margin"
+        android:layout_marginEnd="@dimen/albumsfeed_item_image_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/app_grey"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/title_photo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="@dimen/albumsfeed_item_standard_padding"
+        android:paddingEnd="@dimen/albumsfeed_item_text_end_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/album_thumbnail"
+        app:layout_constraintTop_toTopOf="@+id/album_thumbnail" />
+
+    <TextView
+        android:id="@+id/album_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="@dimen/albumsfeed_item_standard_padding"
+        android:paddingEnd="@dimen/albumsfeed_item_text_end_margin"
+        app:layout_constraintBottom_toTopOf="@+id/user_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/album_thumbnail"
+        app:layout_constraintTop_toBottomOf="@+id/title_photo" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="@dimen/albumsfeed_item_standard_padding"
+        android:paddingEnd="@dimen/albumsfeed_item_text_end_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/album_thumbnail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/album_thumbnail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
