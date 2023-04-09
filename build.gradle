@@ -20,7 +20,7 @@ buildscript {
     ext.app_targetSdkVersion = 31
     ext.app_compileSdkVersion = 31
     ext.app_buildToolsVersion = "32.0.0"
-
+    ext.barista_version = "3.2.0"
 
     repositories {
         google()
