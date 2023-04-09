@@ -40,7 +40,7 @@ android {
 dependencies {
     api "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout_version"
     api "com.squareup.picasso:picasso:$picasso_version"
-
+    
     api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api "androidx.core:core-ktx:$core_ktx_version"
     api "androidx.appcompat:appcompat:$androidx_appcompat_version"
