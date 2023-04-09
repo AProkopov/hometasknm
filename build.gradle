@@ -21,6 +21,7 @@ buildscript {
     ext.app_compileSdkVersion = 31
     ext.app_buildToolsVersion = "32.0.0"
     ext.barista_version = "3.2.0"
+    ext.mockito_version = "3.8.0"
 
     repositories {
         google()
