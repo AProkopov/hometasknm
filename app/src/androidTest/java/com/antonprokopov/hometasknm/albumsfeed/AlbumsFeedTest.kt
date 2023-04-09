@@ -17,6 +17,9 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class AlbumsFeedTest {
 
+    /**
+     * This idlingResource is placed here just to demonstrate the way it works.
+     */
     private val countingIdlingResource = CountingIdlingResource("AlbumsFeed")
 
     @get:Rule
