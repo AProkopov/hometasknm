@@ -1,5 +1,7 @@
 # hometasknm
 
-#Used 3d party libraries: Dagger2, Retrofit2, Picasso, Espresso, Mockito, Barista
+Used 3d party libraries: Dagger2, Retrofit2, Picasso, Espresso, Mockito, Barista
 
-#Architecture: MVVM with Android Architecture Components (ViewModel, LiveData) and Kotlin Coroutines
+Architecture: MVVM with Android Architecture Components (ViewModel, LiveData) and Kotlin Coroutines
+
+Gradle modules: core, network, albumsfeed-api, appstartup, albumsfeed, app
