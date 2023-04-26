@@ -2,9 +2,11 @@ package com.antonprokopov.appstartup.usecase
 
 import com.antonprokopov.appstartup.di.AppStartupScope
 import com.antonprokopov.core.data.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 @AppStartupScope
@@ -22,6 +24,6 @@ class GetInitDataUseCase @Inject constructor() {
             emit(Resource.newLoading())
             delay(FAKE_APP_STARTUP_DATA_RESPONSE_DELAY_MILLIS)
             emit(Resource.newSuccess(true))
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }

@@ -11,6 +11,7 @@ import com.antonprokopov.core.data.Resource
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 @AlbumsFeedScope
@@ -27,7 +28,7 @@ class AlbumsUseCase @Inject constructor(private val apiService: ApiService) {
             }
 
             emit(result)
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     @ExperimentalCoroutinesApi
