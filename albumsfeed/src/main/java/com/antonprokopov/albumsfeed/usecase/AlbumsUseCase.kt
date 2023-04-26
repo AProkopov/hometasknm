@@ -1,6 +1,5 @@
 package com.antonprokopov.albumsfeed.usecase
 
-import android.util.Log
 import com.antonprokopov.albumsfeed.data.api.ApiService
 import com.antonprokopov.albumsfeed.data.models.AlbumDto
 import com.antonprokopov.albumsfeed.data.models.ExtendedAlbumDto
