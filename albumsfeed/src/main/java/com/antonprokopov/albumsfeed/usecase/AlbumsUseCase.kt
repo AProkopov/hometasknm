@@ -7,10 +7,10 @@ import com.antonprokopov.albumsfeed.data.models.PhotoDto
 import com.antonprokopov.albumsfeed.data.models.UserDto
 import com.antonprokopov.albumsfeed.di.AlbumsFeedScope
 import com.antonprokopov.core.data.Resource
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 @AlbumsFeedScope
@@ -27,28 +27,28 @@ class AlbumsUseCase @Inject constructor(private val apiService: ApiService) {
             }
 
             emit(result)
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
+    @ExperimentalCoroutinesApi
     private suspend fun getExtendedAlbumsData(): List<ExtendedAlbumDto> {
-        var users: List<UserDto>? = null
-        var albums: List<AlbumDto>? = null
-        var photos: List<PhotoDto>? = null
+        var users: Deferred<List<UserDto>?>
+        var albums: Deferred<List<AlbumDto>?>
+        var photos: Deferred<List<PhotoDto>?>
         val extendedAlbums = mutableListOf<ExtendedAlbumDto>()
 
         coroutineScope {
-            launch {
-                users = apiService.getUsers()
-                albums = apiService.getAlbums()
-                photos = apiService.getPhotos()
-            }.join()
+            users = async { apiService.getUsers() }
+            albums = async { apiService.getAlbums() }
+            photos = async { apiService.getPhotos() }
+            awaitAll(users, albums, photos)
 
-            albums?.forEach { album ->
+            albums.getCompleted()?.forEach { album ->
                 extendedAlbums.add(
                     ExtendedAlbumDto(
                         album = album,
-                        user = users?.find { it.id == album.userId },
-                        firstPhoto = photos?.firstOrNull { it.albumId == album.id }
+                        user = users.getCompleted()?.find { it.id == album.userId },
+                        firstPhoto = photos.getCompleted()?.firstOrNull { it.albumId == album.id }
                     )
                 )
             }

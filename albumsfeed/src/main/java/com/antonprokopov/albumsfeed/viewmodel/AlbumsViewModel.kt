@@ -29,7 +29,6 @@ class AlbumsViewModel: ViewModel() {
     fun getAlbumPreviews() {
         viewModelScope.launch {
             albumsUseCase.execute()
-                .flowOn(Dispatchers.IO)
                 .catch { e ->
                     errorStateLiveData.value = Resource.ErrorDesc(message = e.message)
                 }

@@ -28,7 +28,6 @@ class SplashViewModel : ViewModel() {
     fun getInitialData() {
         viewModelScope.launch {
             getInitDataUseCase.execute()
-                .flowOn(Dispatchers.IO)
                 .catch { e ->
                     initialDataLiveData.value = false
                 }
