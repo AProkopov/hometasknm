@@ -38,23 +38,19 @@ class AlbumsUseCase @Inject constructor(private val apiService: ApiService) {
         val extendedAlbums = mutableListOf<ExtendedAlbumDto>()
 
         coroutineScope {
-            launch {
-                users = async { apiService.getUsers().also { Log.d("TEST", "users") } }
-                albums = async { apiService.getAlbums().also { Log.d("TEST", "albums") } }
-                photos = async { apiService.getPhotos().also { Log.d("TEST", "photos") } }
+            users = async { apiService.getUsers() }
+            albums = async { apiService.getAlbums() }
+            photos = async { apiService.getPhotos() }
+            awaitAll(users, albums, photos)
 
-                awaitAll(users, albums, photos)
-
-
-                albums.getCompleted()?.forEach { album ->
-                    extendedAlbums.add(
-                        ExtendedAlbumDto(
-                            album = album,
-                            user = users.getCompleted()?.find { it.id == album.userId },
-                            firstPhoto = photos.getCompleted()?.firstOrNull { it.albumId == album.id }
-                        )
+            albums.getCompleted()?.forEach { album ->
+                extendedAlbums.add(
+                    ExtendedAlbumDto(
+                        album = album,
+                        user = users.getCompleted()?.find { it.id == album.userId },
+                        firstPhoto = photos.getCompleted()?.firstOrNull { it.albumId == album.id }
                     )
-                }
+                )
             }
         }
 
